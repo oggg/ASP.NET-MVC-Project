@@ -13,6 +13,8 @@ namespace ApplicationStore.Data
 
         public virtual IDbSet<Application> Applications { get; set; }
 
+        public virtual IDbSet<AppImage> Images { get; set; }
+
         public virtual IDbSet<Category> Categories { get; set; }
 
         public virtual IDbSet<Rating> Ratings { get; set; }
