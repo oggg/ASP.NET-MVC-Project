@@ -45,7 +45,9 @@ namespace ApplicationStore.Data.Migrations
 
                 var adminUser = new User()
                 {
-                    Email = DbConstants.AdminMail
+                    UserName = DbConstants.AdminMail,
+                    Email = DbConstants.AdminMail,
+                    Developer = false
                 };
 
                 manager.Create(adminUser, DbConstants.AdminPass);

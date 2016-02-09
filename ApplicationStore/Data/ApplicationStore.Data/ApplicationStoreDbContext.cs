@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using ApplicationStore.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -9,6 +10,12 @@ namespace ApplicationStore.Data
         public ApplicationStoreDbContext()
             : base("ApplicationStoreConnection", throwIfV1Schema: false)
         {
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            base.OnModelCreating(modelBuilder);
         }
 
         public virtual IDbSet<Application> Applications { get; set; }
