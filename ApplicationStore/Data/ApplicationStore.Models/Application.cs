@@ -36,6 +36,11 @@ namespace ApplicationStore.Models
 
         public virtual AppImage Image { get; set; }
 
+        [Required]
+        public int PathId { get; set; }
+
+        public virtual AppPath Path { get; set; }
+
         public virtual ICollection<User> InstalledBy { get { return this.installedBy; } set { this.installedBy = value; } }
 
         public virtual ICollection<Rating> Ratings { get { return this.ratings; } set { this.ratings = value; } }
