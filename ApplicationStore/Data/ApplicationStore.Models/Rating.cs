@@ -14,6 +14,7 @@ namespace ApplicationStore.Models
 
         public virtual User User { get; set; }
 
+        [Required]
         public int ApplicationId { get; set; }
 
         public virtual Application Application { get; set; }

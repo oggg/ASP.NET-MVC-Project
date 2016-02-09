@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -7,7 +8,18 @@ namespace ApplicationStore.Models
 {
     public class User : IdentityUser
     {
+        private ICollection<Application> applications;
+        private ICollection<Rating> ratings;
 
+        public User()
+        {
+            this.applications = new HashSet<Application>();
+            this.ratings = new HashSet<Rating>();
+        }
+
+        public virtual ICollection<Application> Applications { get { return this.applications; } set { this.applications = value; } }
+
+        public virtual ICollection<Rating> Ratings { get { return this.ratings; } set { this.ratings = value; } }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationStoreDbContext.cs" />
+    <Compile Include="IApplicationstoreDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -67,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ApplicationStore.Common\ApplicationStore.Common.csproj">
+      <Project>{f9ab0146-4903-4d78-866e-88d5cd48e353}</Project>
+      <Name>ApplicationStore.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ApplicationStore.Models\ApplicationStore.Models.csproj">
       <Project>{62d2c751-3b74-491e-b5fe-40cfacf61252}</Project>
       <Name>ApplicationStore.Models</Name>
