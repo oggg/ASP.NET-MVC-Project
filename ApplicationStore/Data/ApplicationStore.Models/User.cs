@@ -19,6 +19,8 @@ namespace ApplicationStore.Models
 
         public bool Developer { get; set; }
 
+        public bool? Banned { get; set; }
+
         public virtual ICollection<Application> Applications { get { return this.applications; } set { this.applications = value; } }
 
         public virtual ICollection<Rating> Ratings { get { return this.ratings; } set { this.ratings = value; } }
