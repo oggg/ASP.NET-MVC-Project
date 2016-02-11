@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using ApplicationStore.Web.Areas.Administration.Controllers;
 
 namespace ApplicationStore.Web.Areas.Administration
 {
@@ -17,7 +18,9 @@ namespace ApplicationStore.Web.Areas.Administration
             context.MapRoute(
                 "Administration",
                 "Administration/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new { controller = "Users" },
+                new[] { "ApplicationStore.Web.Areas.Administration.Controllers" }
             );
         }
     }

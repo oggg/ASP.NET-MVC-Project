@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ApplicationStore.Data
 {
-    public class ApplicationStoreDbContext : IdentityDbContext<User>, IApplicationstoreDbContext
+    public class ApplicationStoreDbContext : IdentityDbContext<User>, IApplicationStoreDbContext
     {
         public ApplicationStoreDbContext()
             : base("ApplicationStoreConnection", throwIfV1Schema: false)

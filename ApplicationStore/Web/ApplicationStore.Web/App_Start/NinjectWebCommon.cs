@@ -5,10 +5,11 @@ namespace ApplicationStore.Web.App_Start
 {
     using System;
     using System.Web;
-
+    using Data;
+    using Data.Repositories;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
+    using Ninject.Extensions.Conventions;
     using Ninject.Web.Common;
 
     public static class NinjectWebCommon
@@ -61,6 +62,12 @@ namespace ApplicationStore.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(typeof(IApplicationStoreDbContext)).To(typeof(ApplicationStoreDbContext));
+            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind(b => b.From("ApplicationStore.Services")
+                              .SelectAllClasses()
+                              .BindDefaultInterface());
         }
     }
 }

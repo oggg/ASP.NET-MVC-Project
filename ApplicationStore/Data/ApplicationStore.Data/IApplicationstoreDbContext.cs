@@ -3,7 +3,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
 
-    public interface IApplicationstoreDbContext
+    public interface IApplicationStoreDbContext
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
