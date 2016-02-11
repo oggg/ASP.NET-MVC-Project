@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ApplicationStore.Common;
 using ApplicationStore.Models;
 using ApplicationStore.Web.Models;
 using Microsoft.AspNet.Identity;
@@ -447,6 +448,13 @@ namespace ApplicationStore.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
+            // TODO: role based routing to different areas. 201602111225
+
+            if (User.IsInRole(DbConstants.AdminRole))
+            {
+                return RedirectToAction("Index", "Users", new { area = "Administration" });
+            }
+
             return RedirectToAction("Index", "Home");
         }
 

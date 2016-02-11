@@ -28,7 +28,7 @@ namespace ApplicationStore.Data.Migrations
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
 
-                var adminRole = new IdentityRole(DbConstants.RoleAdmin);
+                var adminRole = new IdentityRole(DbConstants.AdminRole);
                 var developerRole = new IdentityRole(DbConstants.RoleDeveloper);
 
                 manager.Create(adminRole);
@@ -51,7 +51,7 @@ namespace ApplicationStore.Data.Migrations
                 };
 
                 manager.Create(adminUser, DbConstants.AdminPass);
-                manager.AddToRole(adminUser.Id, DbConstants.RoleAdmin);
+                manager.AddToRole(adminUser.Id, DbConstants.AdminRole);
             }
         }
 

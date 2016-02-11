@@ -2,7 +2,7 @@
 {
     public class DbConstants
     {
-        public const string RoleAdmin = "Admin";
+        public const string AdminRole = "Admin";
         public const string AdminMail = "admin@appstore.com";
         public const string AdminPass = "123456";
 

@@ -7,7 +7,7 @@ namespace ApplicationStore.Web.Controllers
     {
         public ActionResult Index()
         {
-            if (User.IsInRole(DbConstants.RoleAdmin))
+            if (User.IsInRole(DbConstants.AdminRole))
             {
                 // TODO: redirect to appropriate routing
             }
