@@ -2,22 +2,18 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ApplicationStore.Common;
 using ApplicationStore.Models;
-using ApplicationStore.Services;
 using ApplicationStore.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Ninject;
 
 namespace ApplicationStore.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        [Inject]
-        private UsersService usersService;
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -25,17 +21,10 @@ namespace ApplicationStore.Web.Controllers
         {
         }
         // TODO: try with basecontroller to inject usersService
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, UsersService service)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UsersService = service;
             UserManager = userManager;
             SignInManager = signInManager;
-        }
-
-        public UsersService UsersService
-        {
-            get { return this.usersService; }
-            private set { this.usersService = value; }
         }
 
         public ApplicationSignInManager SignInManager
@@ -89,7 +78,7 @@ namespace ApplicationStore.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToRole(returnUrl, model.Email);
+                    return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -163,8 +152,14 @@ namespace ApplicationStore.Web.Controllers
             {
                 var user = new User { UserName = model.Email, Email = model.Email, Developer = model.Developer };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    if (user.Developer)
+                    {
+                        result = UserManager.AddToRole(user.Id, DbConstants.DeveloperRole);
+                    }
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -460,25 +455,6 @@ namespace ApplicationStore.Web.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
-        }
-
-        private ActionResult RedirectToRole(string returnUrl, string email)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            // TODO: role based routing to different areas. 201602111355
-            var service = this.usersService;
-            var userRole = this.usersService.GetByUserName(email); //.Roles.First().ToString();
-
-            if (true)
-            {
-                var result = RedirectToAction("Index", "Users", new { area = "Administration" });
-                return result;
-            }
-
-            // return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

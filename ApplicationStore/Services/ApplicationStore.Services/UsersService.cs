@@ -25,11 +25,6 @@ namespace ApplicationStore.Services
             return this.users.GetById(id);
         }
 
-        public User GetByUserName(string userName)
-        {
-            return this.users.All().FirstOrDefault(u => u.UserName == userName);
-        }
-
         public void Remove(string id)
         {
             throw new NotImplementedException();

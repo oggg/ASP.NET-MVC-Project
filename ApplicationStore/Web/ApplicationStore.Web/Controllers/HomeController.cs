@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using ApplicationStore.Common;
 
 namespace ApplicationStore.Web.Controllers
 {
@@ -7,10 +6,6 @@ namespace ApplicationStore.Web.Controllers
     {
         public ActionResult Index()
         {
-            if (User.IsInRole(DbConstants.AdminRole))
-            {
-                // TODO: redirect to appropriate routing
-            }
             return View();
         }
 

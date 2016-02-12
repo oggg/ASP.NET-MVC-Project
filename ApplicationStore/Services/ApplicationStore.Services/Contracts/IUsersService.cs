@@ -9,8 +9,6 @@ namespace ApplicationStore.Services.Contracts
 
         User GetById(string id);
 
-        User GetByUserName(string userName);
-
         void Update(User user);
 
         void Remove(string id);

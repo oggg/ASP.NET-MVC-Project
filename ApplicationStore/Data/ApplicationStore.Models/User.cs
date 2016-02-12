@@ -25,17 +25,25 @@ namespace ApplicationStore.Models
 
         public virtual ICollection<Rating> Ratings { get { return this.ratings; } set { this.ratings = value; } }
 
-        public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = manager.CreateIdentity(this, DefaultAuthenticationTypes.ApplicationCookie);
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
         }
 
-        public Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
-        {
-            return Task.FromResult(this.GenerateUserIdentity(manager));
-        }
+        //public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)
+        //{
+        //    // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+        //    var userIdentity = manager.CreateIdentity(this, DefaultAuthenticationTypes.ApplicationCookie);
+        //    // Add custom user claims here
+        //    return userIdentity;
+        //}
+
+        //public Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        //{
+        //    return Task.FromResult(this.GenerateUserIdentity(manager));
+        //}
     }
 }

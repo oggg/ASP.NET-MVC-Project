@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using ApplicationStore.Common;
 
 namespace ApplicationStore.Models
 {
@@ -15,10 +18,11 @@ namespace ApplicationStore.Models
         }
 
         [Key]
-        [Required]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         [Required]
+        [MaxLength(ModelsConstants.MaxAppNameLength, ErrorMessage = ModelsConstants.NameTooLong)]
         public string Name { get; set; }
 
         [Required]

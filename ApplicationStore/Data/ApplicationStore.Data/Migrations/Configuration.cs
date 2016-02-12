@@ -29,7 +29,7 @@ namespace ApplicationStore.Data.Migrations
                 var manager = new RoleManager<IdentityRole>(store);
 
                 var adminRole = new IdentityRole(DbConstants.AdminRole);
-                var developerRole = new IdentityRole(DbConstants.RoleDeveloper);
+                var developerRole = new IdentityRole(DbConstants.DeveloperRole);
 
                 manager.Create(adminRole);
                 manager.Create(developerRole);
