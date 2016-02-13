@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationStore.Web", "Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationStore.Models", "Data\ApplicationStore.Models\ApplicationStore.Models.csproj", "{62D2C751-3B74-491E-B5FE-40CFACF61252}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationStore.Web.Infrastructure", "ApplicationStore.Web.Infrastructure\ApplicationStore.Web.Infrastructure.csproj", "{A23B8EDF-890D-4CB0-9C3B-559247D03B6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{62D2C751-3B74-491E-B5FE-40CFACF61252}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62D2C751-3B74-491E-B5FE-40CFACF61252}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62D2C751-3B74-491E-B5FE-40CFACF61252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A23B8EDF-890D-4CB0-9C3B-559247D03B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A23B8EDF-890D-4CB0-9C3B-559247D03B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A23B8EDF-890D-4CB0-9C3B-559247D03B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A23B8EDF-890D-4CB0-9C3B-559247D03B6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{4C9E1ED2-422F-4AD0-948F-733FB26C26FE} = {BDB85214-FDF5-487D-A282-05C9FEDFE408}
 		{1506A4F9-5A73-4930-807A-07F2BCC565B0} = {B9900620-0523-415A-B1A0-4AC950F4AD04}
 		{62D2C751-3B74-491E-B5FE-40CFACF61252} = {33D166D2-65E3-416B-9143-58EE37488A33}
+		{A23B8EDF-890D-4CB0-9C3B-559247D03B6B} = {B9900620-0523-415A-B1A0-4AC950F4AD04}
 	EndGlobalSection
 EndGlobal

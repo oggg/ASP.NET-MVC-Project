@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using ApplicationStore.Common;
 using ApplicationStore.Models;
-using ApplicationStore.Web.Models;
+using ApplicationStore.Web.ViewModels.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
