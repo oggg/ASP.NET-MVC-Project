@@ -40,6 +40,9 @@
 
         public virtual AppImage Image { get; set; }
 
+        [MaxLength(ModelsConstants.MaxAppDescriptionLength, ErrorMessage = ModelsConstants.DescriptionTooLong)]
+        public string Description { get; set; }
+
         [Required]
         public string Path { get; set; }
 
