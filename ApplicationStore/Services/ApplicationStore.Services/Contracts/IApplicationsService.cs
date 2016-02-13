@@ -5,13 +5,15 @@ namespace ApplicationStore.Services
 {
     public interface IApplicationsService
     {
+        Application Add(Application application);
+
         IQueryable<Application> GetAll();
 
         IQueryable<Application> GetByCreator(string creatorName);
 
         Application GetById(string id);
 
-        void Update(Application application);
+        // void UpdateById(int id, Application application);
 
         void Remove(string id);
     }

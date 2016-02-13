@@ -23,7 +23,14 @@
 
         public double Rated()
         {
-            var rate = this.Rating.Sum() / (double)this.Rating.Count;
+            var divider = this.Rating.Count;
+
+            if (divider == 0)
+            {
+                divider = 1;
+            }
+
+            var rate = this.Rating.Sum() / (double)divider;
             return rate;
         }
 

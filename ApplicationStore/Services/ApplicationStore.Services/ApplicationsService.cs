@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ApplicationStore.Data.Repositories;
 using ApplicationStore.Models;
 
@@ -12,6 +11,13 @@ namespace ApplicationStore.Services
         public ApplicationsService(IRepository<Application> applications)
         {
             this.applications = applications;
+        }
+
+        public Application Add(Application application)
+        {
+            this.applications.Add(application);
+            this.applications.SaveChanges();
+            return application;
         }
 
         public IQueryable<Application> GetAll()
@@ -34,9 +40,12 @@ namespace ApplicationStore.Services
             this.applications.Delete(id);
         }
 
-        public void Update(Application application)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateById(string id, Application updatedApp)
+        //{
+        //    var appToUpdate = this.applications.GetById(id);
+        //    appToUpdate.CaterogyId = updatedApp.CaterogyId;
+        //    appToUpdate.Description = updatedApp.Description;
+        //    appToUpdate.
+        //}
     }
 }

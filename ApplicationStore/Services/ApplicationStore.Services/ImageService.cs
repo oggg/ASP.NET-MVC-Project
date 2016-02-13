@@ -14,6 +14,13 @@
             this.images = images;
         }
 
+        public AppImage Add(AppImage image)
+        {
+            this.images.Add(image);
+            this.images.SaveChanges();
+            return image;
+        }
+
         public IQueryable<AppImage> GetAll()
         {
             return this.images.All();
@@ -34,11 +41,6 @@
             var image = this.images.GetById(id);
             this.images.Delete(image);
             this.images.SaveChanges();
-        }
-
-        public void Update(AppImage image)
-        {
-
         }
     }
 }

@@ -65,7 +65,7 @@ namespace ApplicationStore.Web.App_Start
         {
             kernel.Bind(typeof(IApplicationStoreDbContext)).To(typeof(ApplicationStoreDbContext));
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
-            kernel.Bind<ICacheService>().To<InMemoryCache>();
+            kernel.Bind<ICacheService>().To<HttpCacheService>();
 
             kernel.Bind(b => b.From("ApplicationStore.Services")
                               .SelectAllClasses()

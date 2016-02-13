@@ -14,6 +14,13 @@ namespace ApplicationStore.Services
             this.categories = categories;
         }
 
+        public Category Add(Category category)
+        {
+            this.categories.Add(category);
+            this.categories.SaveChanges();
+            return category;
+        }
+
         public IQueryable<Category> GetAll()
         {
             return this.categories.All();

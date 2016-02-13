@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caching\ICacheService.cs" />
-    <Compile Include="Caching\InMemoryCache.cs" />
+    <Compile Include="Caching\HttpCacheService.cs" />
     <Compile Include="Helpers\FileSystemChecker.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />

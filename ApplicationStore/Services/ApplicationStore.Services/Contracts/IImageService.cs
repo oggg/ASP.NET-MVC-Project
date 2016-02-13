@@ -5,6 +5,8 @@ namespace ApplicationStore.Services.Contracts
 {
     public interface IImageService
     {
+        AppImage Add(AppImage image);
+
         IQueryable<AppImage> GetAll();
 
         AppImage GetById(int id);

@@ -19,12 +19,18 @@
         private readonly IApplicationsService applications;
         private readonly ICategoriesService categories;
         private readonly IUsersService users;
+        private readonly IImageService images;
 
-        public ApplicationsController(IApplicationsService applications, ICategoriesService categories, IUsersService users)
+        public ApplicationsController(
+            IApplicationsService applications,
+            ICategoriesService categories,
+            IUsersService users,
+            IImageService images)
         {
             this.applications = applications;
             this.categories = categories;
             this.users = users;
+            this.images = images;
         }
 
         [HttpGet]
@@ -36,6 +42,9 @@
                 "categories",
                 () => this.categories.GetAll().To<CategoryViewModel>().ToList(),
                 10 * 60);
+
+            var uploadedModel = new { applicationsView = applications, categoriesView = categories };
+            return View(uploadedModel);
         }
 
         [HttpGet]
@@ -72,10 +81,8 @@
                             Name = app.UploadedImage.FileName,
                             Path = Path.Combine(WebConstants.ImageFolder, app.UploadedImage.FileName)
                         };
-                    }
-                    else
-                    {
-                        //TODO: what to do when such image exists already?
+
+                        this.images.Add(newApplication.Image);
                     }
                 }
                 else
@@ -97,10 +104,9 @@
                         app.UploadedApplication.SaveAs(Path.Combine(WebConstants.ApplicationFolder, app.UploadedApplication.FileName));
                         newApplication.Path = Path.Combine(WebConstants.ApplicationFolder, app.UploadedApplication.FileName);
                     }
-                    else
-                    {
-                        //TODO: what to do when such app exists already?
-                    }
+
+                    this.applications.Add(newApplication);
+                    RedirectToAction("Uploaded", "Applications");
                 }
                 else
                 {
@@ -108,6 +114,8 @@
                     return View(app);
                 }
             }
+
+            return View(app);
         }
     }
 }
