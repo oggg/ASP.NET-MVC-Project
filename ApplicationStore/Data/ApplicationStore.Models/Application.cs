@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using ApplicationStore.Common;
-
-namespace ApplicationStore.Models
+﻿namespace ApplicationStore.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using ApplicationStore.Common;
+
     public class Application
     {
         private ICollection<User> installedBy;
@@ -41,9 +41,7 @@ namespace ApplicationStore.Models
         public virtual AppImage Image { get; set; }
 
         [Required]
-        public int PathId { get; set; }
-
-        public virtual AppPath Path { get; set; }
+        public string Path { get; set; }
 
         public virtual ICollection<User> InstalledBy { get { return this.installedBy; } set { this.installedBy = value; } }
 
