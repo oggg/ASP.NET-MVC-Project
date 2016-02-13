@@ -5,6 +5,7 @@ namespace ApplicationStore.Web.App_Start
 {
     using System;
     using System.Web;
+    using ApplicationStore.Web.Infrastructure.Caching;
     using Data;
     using Data.Repositories;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -64,6 +65,7 @@ namespace ApplicationStore.Web.App_Start
         {
             kernel.Bind(typeof(IApplicationStoreDbContext)).To(typeof(ApplicationStoreDbContext));
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
 
             kernel.Bind(b => b.From("ApplicationStore.Services")
                               .SelectAllClasses()

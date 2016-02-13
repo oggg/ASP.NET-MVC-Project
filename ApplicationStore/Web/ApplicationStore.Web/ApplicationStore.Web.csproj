@@ -239,6 +239,7 @@
     <Compile Include="ViewModels\Applications\AddApplicationViewModel.cs" />
     <Compile Include="ViewModels\Home\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\Home\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Home\RateViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -268,7 +269,7 @@
     <Content Include="Areas\Administration\Views\Users\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
-    <Content Include="Areas\Developer\Views\AddApplication.cshtml" />
+    <Content Include="Areas\Developer\Views\Applications\AddApplication.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -320,7 +321,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Developer\Models\" />
-    <Folder Include="Areas\Developer\Views\Applications\" />
     <Folder Include="Areas\Developer\Views\Shared\" />
     <Folder Include="Views\Application\" />
     <Folder Include="Views\Base\" />

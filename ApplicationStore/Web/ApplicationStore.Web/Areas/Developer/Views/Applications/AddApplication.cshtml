@@ -11,8 +11,15 @@
     @Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })
     @Html.EditorFor(m => m.Name)
     @Html.EditorFor(m => m.Description)
-    @Html.EditorFor(m => m.Priority)
 
+    <div class="row">
+        <div class="col-md-2">
+            <strong>Application File</strong>
+        </div>
+        <div class="col-md-5">
+            <input type="file" name="UploadedApplication" />
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-2">
             <strong>Image</strong>
