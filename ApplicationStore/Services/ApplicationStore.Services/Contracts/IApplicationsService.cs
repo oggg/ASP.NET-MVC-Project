@@ -7,6 +7,8 @@ namespace ApplicationStore.Services
     {
         IQueryable<Application> GetAll();
 
+        IQueryable<Application> GetByCreator(string creatorName);
+
         Application GetById(string id);
 
         void Update(Application application);

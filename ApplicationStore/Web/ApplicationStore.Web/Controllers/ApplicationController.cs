@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ApplicationStore.Web.Controllers
 {
-    public class ApplicationController : Controller
+    public class ApplicationController : BaseController
     {
         // GET: Application
         public ActionResult Index()

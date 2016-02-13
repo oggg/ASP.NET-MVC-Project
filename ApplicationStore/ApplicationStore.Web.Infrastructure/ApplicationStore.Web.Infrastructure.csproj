@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Caching\ICacheService.cs" />
     <Compile Include="Caching\InMemoryCache.cs" />
+    <Compile Include="Helpers\FileSystemChecker.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom{T}.cs" />

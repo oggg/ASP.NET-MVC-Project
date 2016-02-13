@@ -4,8 +4,8 @@
 
     public interface ICacheService
     {
-        T Get<T>(string cacheID, Func<T> getItemCallback) where T : class;
+        T Get<T>(string itemName, Func<T> getDataFunc, int durationInSeconds);
 
-        void Clear(string cacheId);
+        void Remove(string itemName);
     }
 }

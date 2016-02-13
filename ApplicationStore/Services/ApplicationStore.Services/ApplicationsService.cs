@@ -19,6 +19,11 @@ namespace ApplicationStore.Services
             return this.applications.All();
         }
 
+        public IQueryable<Application> GetByCreator(string creatorName)
+        {
+            return this.applications.All().Where(x => x.Creator.UserName == creatorName);
+        }
+
         public Application GetById(string id)
         {
             return this.applications.GetById(id);
