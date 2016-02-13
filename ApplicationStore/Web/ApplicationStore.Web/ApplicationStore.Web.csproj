@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -213,8 +217,8 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Developer\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Developer\DeveloperAreaRegistration.cs" />
-    <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,6 +236,9 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Applications\AddApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Home\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Home\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -254,7 +261,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Developer\Views\web.config" />
     <Content Include="Areas\Administration\Views\web.config" />
-    <Content Include="Areas\Users\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Create.cshtml" />
@@ -262,6 +268,7 @@
     <Content Include="Areas\Administration\Views\Users\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Developer\Views\AddApplication.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -312,12 +319,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Developer\Controllers\" />
     <Folder Include="Areas\Developer\Models\" />
+    <Folder Include="Areas\Developer\Views\Applications\" />
     <Folder Include="Areas\Developer\Views\Shared\" />
-    <Folder Include="Areas\Users\Controllers\" />
-    <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Areas\Users\Views\Shared\" />
     <Folder Include="Views\Application\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -329,6 +333,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ApplicationStore.Web.Infrastructure\ApplicationStore.Web.Infrastructure.csproj">
+      <Project>{a23b8edf-890d-4cb0-9c3b-559247d03b6b}</Project>
+      <Name>ApplicationStore.Web.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\ApplicationStore.Common\ApplicationStore.Common.csproj">
       <Project>{f9ab0146-4903-4d78-866e-88d5cd48e353}</Project>
       <Name>ApplicationStore.Common</Name>

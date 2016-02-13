@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ApplicationStore.Common;
-
-namespace ApplicationStore.Models
+﻿namespace ApplicationStore.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using ApplicationStore.Common;
+
     public class Rating
     {
         [Key]

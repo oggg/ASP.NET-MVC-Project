@@ -59,7 +59,6 @@
   <ItemGroup>
     <Compile Include="AppImage.cs" />
     <Compile Include="Application.cs" />
-    <Compile Include="AppPath.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Rating.cs" />
     <Compile Include="User.cs" />

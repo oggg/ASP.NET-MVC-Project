@@ -1,0 +1,33 @@
+﻿@model ApplicationStore.Web.ViewModels.Applications.AddApplicationViewModel
+
+@{ 
+    ViewBag.Title = "Add application";
+}
+
+@using (Html.BeginForm("Add", "Applications", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    @Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })
+    @Html.EditorFor(m => m.Name)
+    @Html.EditorFor(m => m.Description)
+    @Html.EditorFor(m => m.Priority)
+
+    <div class="row">
+        <div class="col-md-2">
+            <strong>Image</strong>
+        </div>
+        <div class="col-md-5">
+            <input type="file" name="UploadedImage" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-5 col-md-offset-2">
+            <input type="submit" class="btn btn-default" />
+        </div>
+    </div>
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

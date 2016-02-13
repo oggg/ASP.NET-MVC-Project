@@ -6,7 +6,6 @@
     using System.Web.Mvc;
     using ApplicationStore.Models;
     using ApplicationStore.Web.Infrastructure.Mapping;
-
     public class AddApplicationViewModel : IMapFrom<Application>
     {
         [Required]
