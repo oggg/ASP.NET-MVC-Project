@@ -19,7 +19,7 @@
                         var data = getDataFunc();
                         HttpRuntime.Cache.Insert(
                             itemName,
-                            data,
+                            getDataFunc,
                             null,
                             DateTime.Now.AddSeconds(durationInSeconds),
                             Cache.NoSlidingExpiration);

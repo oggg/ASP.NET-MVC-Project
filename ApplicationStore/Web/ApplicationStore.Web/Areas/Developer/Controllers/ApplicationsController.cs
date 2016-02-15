@@ -9,9 +9,9 @@
     using Models;
     using Services;
     using Services.Contracts;
-    using ViewModels.Applications;
-    using ViewModels.Home;
+    using ViewModels;
     using Web.Controllers;
+    using Web.ViewModels.Home;
 
     [Authorize(Roles = DbConstants.DeveloperRole)]
     public class ApplicationsController : BaseController
@@ -37,18 +37,24 @@
         public ActionResult Uploaded()
         {
             string devName = this.User.Identity.Name;
-            var applications = this.applications.GetByCreator(devName).To<AddApplicationViewModel>().ToList();
-            var categories = this.Cache.Get(
-                "categories",
-                () => this.categories.GetAll().To<CategoryViewModel>().ToList(),
-                10 * 60);
+            var apps = this.users.GetUserApplications(devName).To<ApplicationViewModel>();
+            var applications = apps.ToList();
 
-            var uploadedModel = new { applicationsView = applications, categoriesView = categories };
-            return View(uploadedModel);
+            // TODO: check this.Cache service work
+
+            //var categories =
+            //    this.Cache.Get(
+            //        "categories",
+            //        () => this.categories.GetAll(),
+            //        5 * 60);
+            var cat = this.categories.GetAll().To<CategoryViewModel>(); //.ToList();
+            var categories = cat.ToList();
+            var devAppsModel = new DeveloperApplicationsViewModel { Applications = applications, Categories = categories };
+            return View(devAppsModel);
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult AddApplication()
         {
             var addApplicationViewModel = new AddApplicationViewModel();
 
@@ -57,7 +63,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(AddApplicationViewModel app)
+        public ActionResult AddApplication(AddApplicationViewModel app)
         {
             if (app != null && ModelState.IsValid)
             {

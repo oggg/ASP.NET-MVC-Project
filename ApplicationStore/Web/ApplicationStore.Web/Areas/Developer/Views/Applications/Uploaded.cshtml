@@ -1,0 +1,42 @@
+﻿@model ApplicationStore.Web.Areas.Developer.ViewModels.DeveloperApplicationsViewModel
+
+@{
+    ViewBag.Title = "Uploaded";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.DropDownListFor(m => m.Categories, new SelectList(Model.Categories, "Id", "Name"),new { htmlAttributes = new { @class = "btn btn-primary dropdown-toggle" } })
+
+@if (Model.Applications.Count() == 0)
+{
+    <h3>There are no applications uploaded by you</h3>
+}
+else
+{
+    for (int i = 0; i < Model.Applications.Count(); i++)
+    {
+        <div class="row">
+            @for (int j = 0; j < 3; j++)
+            {
+                var currentApplication = 3 * i + j;
+                if (currentApplication == Model.Applications.Count())
+                {
+                    break;
+                }
+                <div class="col-md-4">
+                    <h2 style="word-wrap: break-word">@Model.Applications[currentApplication].Name</h2>
+                    <div>
+                        <strong>Category: </strong> @Model.Applications[currentApplication].Category
+                    </div>
+                    <div>
+                        <strong>Rating: </strong> @Model.Applications[currentApplication].Rated()
+                    </div>
+                    <a href="/Applications/Details/@Model.Applications[currentApplication].Id" class="btn btn-default">More Details...</a>
+                </div>
+            }
+        </div>
+    }
+}
+<div>
+    @Html.ActionLink("Add Application", "AddApplication", null, new { @class = "btn btn-info"})
+</div>

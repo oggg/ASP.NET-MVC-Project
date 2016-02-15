@@ -24,11 +24,11 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.IsInRole(DbConstants.AdminRole))
                     {
-                        <li>@Html.ActionLink("Administration", "About", "Home")</li>
+                        <li>@Html.ActionLink("Administration", "Index", "Users", new { area = "Administration"}, null)</li>
                     }
                     @if (User.IsInRole(DbConstants.DeveloperRole))
                     {
-                        <li>@Html.ActionLink("Developer zone", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Developer zone", "Uploaded", "Applications", new { area = "Developer"}, null)</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

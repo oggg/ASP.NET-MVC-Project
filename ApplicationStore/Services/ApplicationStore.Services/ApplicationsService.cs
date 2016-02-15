@@ -27,7 +27,8 @@ namespace ApplicationStore.Services
 
         public IQueryable<Application> GetByCreator(string creatorName)
         {
-            return this.applications.All().Where(x => x.Creator.UserName == creatorName);
+            var result = this.applications.All().Where(x => x.Creator.UserName == creatorName);
+            return result;
         }
 
         public Application GetById(string id)

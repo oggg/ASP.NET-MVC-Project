@@ -219,6 +219,7 @@
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Developer\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Developer\DeveloperAreaRegistration.cs" />
+    <Compile Include="Areas\Developer\ViewModels\DeveloperApplicationsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -237,7 +238,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
-    <Compile Include="ViewModels\Applications\AddApplicationViewModel.cs" />
+    <Compile Include="Areas\Developer\ViewModels\AddApplicationViewModel.cs" />
     <Compile Include="ViewModels\Home\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\Home\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Home\RateViewModel.cs" />
@@ -272,6 +273,7 @@
     <Content Include="Areas\Administration\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Developer\Views\Applications\AddApplication.cshtml" />
+    <Content Include="Areas\Developer\Views\Applications\Uploaded.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -322,8 +324,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Developer\Models\" />
     <Folder Include="Areas\Developer\Views\Shared\" />
+    <Folder Include="ViewModels\Applications\" />
     <Folder Include="Views\Application\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

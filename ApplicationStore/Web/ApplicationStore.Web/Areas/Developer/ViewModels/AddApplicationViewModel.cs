@@ -1,4 +1,4 @@
-﻿namespace ApplicationStore.Web.ViewModels.Applications
+﻿namespace ApplicationStore.Web.Areas.Developer.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

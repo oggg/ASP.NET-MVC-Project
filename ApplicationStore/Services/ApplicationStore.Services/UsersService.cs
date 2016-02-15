@@ -30,6 +30,16 @@ namespace ApplicationStore.Services
             return this.users.All().Where(u => u.UserName == name).FirstOrDefault();
         }
 
+        public IQueryable<Application> GetUserApplications(string userName)
+        {
+            var user = this.users.All().Where(u => u.UserName == userName).FirstOrDefault();
+            var userId = user.Id;
+
+            var apps = user.Applications.AsQueryable();
+
+            return apps;
+        }
+
         public void Remove(string id)
         {
             throw new NotImplementedException();

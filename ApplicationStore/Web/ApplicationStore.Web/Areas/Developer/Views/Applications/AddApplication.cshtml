@@ -1,39 +1,56 @@
-﻿@model ApplicationStore.Web.ViewModels.Applications.AddApplicationViewModel
+﻿@model ApplicationStore.Web.Areas.Developer.ViewModels.AddApplicationViewModel
 
-@{ 
+@{
     ViewBag.Title = "Add application";
 }
 
 @using (Html.BeginForm("Add", "Applications", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    <h4>Add new application</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <br />
-    @Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })
-    @Html.EditorFor(m => m.Name)
-    @Html.EditorFor(m => m.Description)
-
-    <div class="row">
-        <div class="col-md-2">
-            <strong>Application File</strong>
-        </div>
-        <div class="col-md-5">
-            <input type="file" name="UploadedApplication" />
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            <strong>Image</strong>
-        </div>
-        <div class="col-md-5">
-            <input type="file" name="UploadedImage" />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Name, new { @class = "form-control" })
         </div>
     </div>
-    <br />
-    <div class="row">
-        <div class="col-md-5 col-md-offset-2">
-            <input type="submit" class="btn btn-default" />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Description, new { @class = "form-control" })
         </div>
     </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <strong>Application File</strong>
+            </div>
+            <div class="col-md-5">
+                <input type="file" name="UploadedApplication" />
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Image</strong>
+                </div>
+                <div class="col-md-5">
+                    <input type="file" name="UploadedImage" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-5 col-md-offset-2">
+                    <input type="submit" class="btn btn-default" />
+                </div>
+            </div>
 }
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")

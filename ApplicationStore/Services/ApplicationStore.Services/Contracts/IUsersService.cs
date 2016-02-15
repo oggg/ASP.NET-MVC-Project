@@ -13,6 +13,8 @@ namespace ApplicationStore.Services.Contracts
 
         void Update(User user);
 
+        IQueryable<Application> GetUserApplications(string userName);
+
         void Remove(string id);
     }
 }
