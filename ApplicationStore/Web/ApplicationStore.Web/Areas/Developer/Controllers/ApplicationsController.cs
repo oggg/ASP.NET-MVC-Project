@@ -11,7 +11,7 @@
     using Services.Contracts;
     using ViewModels;
     using Web.Controllers;
-    using Web.ViewModels.Home;
+    using Web.ViewModels.Applications;
 
     [Authorize(Roles = DbConstants.DeveloperRole)]
     public class ApplicationsController : BaseController
@@ -56,14 +56,16 @@
         [HttpGet]
         public ActionResult AddApplication()
         {
+            var cat = this.categories.GetAll().To<CategoryViewModel>(); //.ToList();
+            var categories = cat.ToList();
             var addApplicationViewModel = new AddApplicationViewModel();
-
+            addApplicationViewModel.Categories = categories;
             return View(addApplicationViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddApplication(AddApplicationViewModel app)
+        public ActionResult AddApplication(UploadApplicationViewModel app) // AddApplicationViewModel app
         {
             if (app != null && ModelState.IsValid)
             {

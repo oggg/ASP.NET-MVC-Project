@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Add", "Applications", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddApplication", "Applications", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h4>Add new application</h4>
@@ -13,39 +13,39 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <br />
     <div class="form-group">
-        @Html.LabelFor(m => m.Categories, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Categories, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })
+            @Html.DropDownListFor(m => m.Categories, new SelectList(Model.Categories, "Id", "Name"), new { htmlAttributes = new { @class = "btn btn-primary dropdown-toggle" } })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
             @Html.EditorFor(m => m.Name, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
             @Html.EditorFor(m => m.Description, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.UploadedApplication, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.UploadedApplication, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
             <input type="file" name="UploadedApplication" class="file" />
         </div>
     </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.UploadedImage, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.UploadedImage, new { @class = "col-md-3 control-label" })
             <div class="col-md-10 fileinput fileinput-new">
                 <input type="file" name="UploadedImage" class="file">
             </div>
         </div>
             <br />
             <div class="row">
-                <div class="col-md-5 col-md-offset-2">
-                    <input type="submit" class="btn btn-default" />
+                <div class="col-md-5">
+                    <input type="submit" class="btn btn-primary" value="Upload"/>
                 </div>
             </div>
 }

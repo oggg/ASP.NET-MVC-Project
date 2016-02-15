@@ -1,4 +1,4 @@
-﻿namespace ApplicationStore.Web.ViewModels.Home
+﻿namespace ApplicationStore.Web.ViewModels.Applications
 {
     using ApplicationStore.Models;
     using ApplicationStore.Web.Infrastructure.Mapping;

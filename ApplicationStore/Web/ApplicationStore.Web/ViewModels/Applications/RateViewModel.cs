@@ -3,7 +3,7 @@ using ApplicationStore.Models;
 using ApplicationStore.Web.Infrastructure.Mapping;
 using AutoMapper;
 
-namespace ApplicationStore.Web.ViewModels.Home
+namespace ApplicationStore.Web.ViewModels.Applications
 {
     public class RateViewModel : IMapFrom<Rating>, IHaveCustomMappings
     {

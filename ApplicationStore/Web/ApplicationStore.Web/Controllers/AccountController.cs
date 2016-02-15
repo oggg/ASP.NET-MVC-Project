@@ -20,7 +20,7 @@ namespace ApplicationStore.Web.Controllers
         public AccountController()
         {
         }
-        // TODO: try with basecontroller to inject usersService
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

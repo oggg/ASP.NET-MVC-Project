@@ -1,7 +1,7 @@
 ﻿namespace ApplicationStore.Web.Areas.Developer.ViewModels
 {
     using System.Collections.Generic;
-    using ApplicationStore.Web.ViewModels.Home;
+    using ApplicationStore.Web.ViewModels.Applications;
 
     public class DeveloperApplicationsViewModel
     {

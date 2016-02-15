@@ -1,4 +1,4 @@
-﻿namespace ApplicationStore.Web.ViewModels.Home
+﻿namespace ApplicationStore.Web.ViewModels.Applications
 {
     using System;
     using System.Collections.Generic;

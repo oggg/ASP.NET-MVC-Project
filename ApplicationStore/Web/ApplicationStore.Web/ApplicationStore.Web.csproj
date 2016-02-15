@@ -219,7 +219,9 @@
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Developer\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Developer\DeveloperAreaRegistration.cs" />
+    <Compile Include="Areas\Developer\ViewModels\ApplicationBaseModel.cs" />
     <Compile Include="Areas\Developer\ViewModels\DeveloperApplicationsViewModel.cs" />
+    <Compile Include="Areas\Developer\ViewModels\UploadApplicationViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -239,9 +241,9 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="Areas\Developer\ViewModels\AddApplicationViewModel.cs" />
-    <Compile Include="ViewModels\Home\ApplicationViewModel.cs" />
-    <Compile Include="ViewModels\Home\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Home\RateViewModel.cs" />
+    <Compile Include="ViewModels\Applications\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Applications\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Applications\RateViewModel.cs" />
     <Compile Include="ViewModels\Images\ImageViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
@@ -325,7 +327,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Developer\Views\Shared\" />
-    <Folder Include="ViewModels\Applications\" />
+    <Folder Include="ViewModels\Home\" />
     <Folder Include="Views\Application\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
