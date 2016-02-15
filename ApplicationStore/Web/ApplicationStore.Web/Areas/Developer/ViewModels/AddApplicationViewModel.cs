@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
-    using System.Web.Mvc;
     using ApplicationStore.Models;
     using ApplicationStore.Web.Infrastructure.Mapping;
     public class AddApplicationViewModel : IMapFrom<Application>
@@ -17,14 +16,16 @@
         [UIHint("MultiLineText")]
         public string Description { get; set; }
 
-        [Display(Name = "Category")]
-        [UIHint("DropDownList")]
         public int CategoryId { get; set; }
 
-        public IEnumerable<SelectListItem> Categories { get; set; }
+        [Display(Name = "Category")]
+        [UIHint("DropDownList")]
+        public IEnumerable<Category> Categories { get; set; } // was selectedlistitem before
 
+        [Display(Name = "Application")]
         public HttpPostedFileBase UploadedImage { get; set; }
 
+        [Display(Name = "Image")]
         public HttpPostedFileBase UploadedApplication { get; set; }
     }
 }

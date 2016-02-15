@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Add application";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm("Add", "Applications", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
@@ -12,7 +13,7 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <br />
     <div class="form-group">
-        @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Categories, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })
         </div>
@@ -29,22 +30,18 @@
             @Html.EditorFor(m => m.Description, new { @class = "form-control" })
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UploadedApplication, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="file" name="UploadedApplication" class="file" />
+        </div>
+    </div>
         <div class="form-group">
-            <div class="col-md-2">
-                <strong>Application File</strong>
-            </div>
-            <div class="col-md-5">
-                <input type="file" name="UploadedApplication" />
+            @Html.LabelFor(m => m.UploadedImage, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10 fileinput fileinput-new">
+                <input type="file" name="UploadedImage" class="file">
             </div>
         </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <strong>Image</strong>
-                </div>
-                <div class="col-md-5">
-                    <input type="file" name="UploadedImage" />
-                </div>
-            </div>
             <br />
             <div class="row">
                 <div class="col-md-5 col-md-offset-2">
