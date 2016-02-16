@@ -219,6 +219,8 @@
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Developer\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Developer\DeveloperAreaRegistration.cs" />
+    <Compile Include="Areas\Developer\ViewModels\AddViewModel.cs" />
+    <Compile Include="Areas\Developer\ViewModels\AppImageModel.cs" />
     <Compile Include="Areas\Developer\ViewModels\ApplicationBaseModel.cs" />
     <Compile Include="Areas\Developer\ViewModels\DeveloperApplicationsViewModel.cs" />
     <Compile Include="Areas\Developer\ViewModels\UploadApplicationViewModel.cs" />

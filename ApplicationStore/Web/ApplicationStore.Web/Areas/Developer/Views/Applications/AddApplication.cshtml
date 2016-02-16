@@ -1,4 +1,4 @@
-﻿@model ApplicationStore.Web.Areas.Developer.ViewModels.AddApplicationViewModel
+﻿@model ApplicationStore.Web.Areas.Developer.ViewModels.AddViewModel
 
 @{
     ViewBag.Title = "Add application";
@@ -13,21 +13,21 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <br />
     <div class="form-group">
-        @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-3 control-label" })
+        @Html.LabelFor(m => m.Application.CategoryId, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.CategoryId, Model.GetCategories)
+            @Html.DropDownListFor(m => m.Application.CategoryId, Model.Application.GetCategories)
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 control-label" })
+        @Html.LabelFor(m => m.Application.Name, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.Name, new { @class = "form-control" })
+            @Html.EditorFor(m => m.Application.Name, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Description, new { @class = "col-md-3 control-label" })
+        @Html.LabelFor(m => m.Application.Description, new { @class = "col-md-3 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.Description, new { @class = "form-control" })
+            @Html.EditorFor(m => m.Application.Description, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -35,13 +35,13 @@
             <strong>Application</strong>
         </div>
         <div class="col-md-10">
-            <input type="file" name="UploadedApplication" class="file" />
+            <input type="file" name="Application.UploadedApplication" class="file" />
         </div>
     </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.UploadedImage, new { @class = "col-md-3 control-label" })
+            @Html.LabelFor(m => m.Image.UploadedImage, new { @class = "col-md-3 control-label" })
             <div class="col-md-10 fileinput fileinput-new">
-                <input type="file" name="UploadedImage" class="file">
+                <input type="file" name="Image.UploadedImage" class="file">
             </div>
         </div>
             <br />

@@ -2,11 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using ApplicationStore.Models;
-    using ApplicationStore.Web.Infrastructure.Mapping;
     using Web.ViewModels.Applications;
 
-    public class AddApplicationViewModel : ApplicationBaseModel, IMapFrom<Application>, IHaveCustomMappings
+    public class AddApplicationViewModel : ApplicationBaseModel
     {
         //[Required]
         //[StringLength(50)]

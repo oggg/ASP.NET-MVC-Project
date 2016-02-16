@@ -5,7 +5,9 @@
     using ApplicationStore.Models;
     using AutoMapper;
 
-    public class ApplicationBaseModel
+    using Infrastructure.Mapping;
+
+    public class ApplicationBaseModel : IMapFrom<Application>, IHaveCustomMappings
     {
         [Required]
         [StringLength(50)]
@@ -21,8 +23,8 @@
         [UIHint("DropDownList")]
         public int CategoryId { get; set; }
 
-        [Required]
-        public HttpPostedFileBase UploadedImage { get; set; }
+        //[Required]
+        //public HttpPostedFileBase UploadedImage { get; set; }
 
         [Required]
         public HttpPostedFileBase UploadedApplication { get; set; }
