@@ -38,8 +38,8 @@
         public ActionResult Uploaded()
         {
             string devName = this.User.Identity.Name;
-            var apps = this.users.GetUserApplications(devName).To<ApplicationViewModel>();
-            var applications = apps.ToList();
+            var apps = this.applications.GetByCreator(devName);
+            var applications = apps.To<ApplicationViewModel>().ToList();
 
             // TODO: check this.Cache service work
 
@@ -75,14 +75,12 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddApplication(AddViewModel app) // AddApplicationViewModel app
+        public ActionResult AddApplication(AddViewModel app)
         {
             //TODO: ADD CATEGORIES TO APP, BEFORE RETURNING IT TO A VIEW!!! THROWS ARGUMENT NULL EXCEPTION FOR THE COLLECTION OF CATEGORIES 
             if (app != null && ModelState.IsValid)
             {
                 var newApplication = this.Mapper.Map<Application>(app.Application);
-                newApplication.CreatorId = User.Identity.GetUserId();
-                newApplication.CaterogyId = app.Application.CategoryId;
 
                 //check if image file exists
                 if (app.Image.UploadedImage != null)
@@ -101,16 +99,16 @@
                             Path = Path.Combine(WebConstants.ImageFolder, app.Image.UploadedImage.FileName)
                         };
 
-                        // newApplication.Image = image;
+                        newApplication.Image = image;
 
                         AppImage dbImage = this.images.Add(image);
-                        newApplication.AppImageId = dbImage.Id;
+                        // newApplication.AppImageId = dbImage.Id; just changed and uncomment newApplication.Image = image;
                     }
                     else
                     {
                         var storedImage = this.images.GetByName(app.Image.UploadedImage.FileName);
-                        newApplication.AppImageId = storedImage.Id;
-                        //TODO: maybe add other image properties
+                        // newApplication.AppImageId = storedImage.Id; just commented and added line below
+                        newApplication.Image = storedImage;
                     }
                 }
                 else
@@ -137,6 +135,9 @@
                         newApplication.Path = Path.Combine(WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
                     }
 
+                    // swap the comment of the two lines below if needed
+                    newApplication.CreatorId = User.Identity.GetUserId();
+                    // newApplication.Creator = this.users.GetById(newApplication.CreatorId);
                     var savedApp = this.applications.Add(newApplication);
                     var curentDeveloper = this.users.GetById(newApplication.CreatorId);
                     curentDeveloper.Applications.Add(savedApp);
