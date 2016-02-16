@@ -17,20 +17,20 @@
         [UIHint("MultiLineText")]
         public string Description { get; set; }
 
+        [Display(Name = "Category")]
+        [UIHint("DropDownList")]
         public int CategoryId { get; set; }
 
         [Required]
-        [Display(Name = "Application")]
         public HttpPostedFileBase UploadedImage { get; set; }
 
         [Required]
-        [Display(Name = "Image")]
         public HttpPostedFileBase UploadedApplication { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<AddApplicationViewModel, Application>()
-                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.UploadedImage))
+                // .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.UploadedImage))
                 .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.UploadedApplication.FileName));
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace ApplicationStore.Web.Areas.Developer.ViewModels
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     using ApplicationStore.Models;
     using ApplicationStore.Web.Infrastructure.Mapping;
     using Web.ViewModels.Applications;
@@ -20,10 +20,15 @@
 
         //public int CategoryId { get; set; }
 
-        [Required]
-        [Display(Name = "Category")]
-        [UIHint("DropDownList")]
         public IEnumerable<CategoryViewModel> Categories { get; set; } // was selectedlistitem before
+
+        public IEnumerable<SelectListItem> GetCategories
+        {
+            get
+            {
+                return new SelectList(Categories, "Id", "Name");
+            }
+        }
 
         //[Required]
         //[Display(Name = "Application")]

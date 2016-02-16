@@ -1,9 +1,9 @@
 ﻿namespace ApplicationStore.Web.Areas.Developer.ViewModels
 {
-    using ApplicationStore.Web.ViewModels.Applications;
+    using System.Web.Mvc;
 
     public class UploadApplicationViewModel : ApplicationBaseModel
     {
-        public CategoryViewModel Category { get; set; }
+        public SelectListItem Categories { get; set; }
     }
 }

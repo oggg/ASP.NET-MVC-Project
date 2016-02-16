@@ -30,8 +30,6 @@
 
         public User Creator { get; set; }
 
-        // public byte[] Content { get; set; }
-
         [Required]
         public int CaterogyId { get; set; }
 

@@ -56,19 +56,24 @@
         [HttpGet]
         public ActionResult AddApplication()
         {
-            var cat = this.categories.GetAll().To<CategoryViewModel>(); //.ToList();
-            var categories = cat.ToList();
-            var addApplicationViewModel = new AddApplicationViewModel();
-            addApplicationViewModel.Categories = categories;
+            var cat = this.categories.GetAll(); //.To<CategoryViewModel>(); //.ToList();
+            var categories = cat.To<CategoryViewModel>().ToList();
+            var addApplicationViewModel = new AddApplicationViewModel
+            {
+                Categories = categories
+            };
+            // addApplicationViewModel.Categories = new SelectList(categories, "Id", "Name");
             return View(addApplicationViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddApplication(UploadApplicationViewModel app) // AddApplicationViewModel app
+        public ActionResult AddApplication(AddApplicationViewModel app) // AddApplicationViewModel app
         {
+
             if (app != null && ModelState.IsValid)
             {
+                AppImage dbImage;
                 var newApplication = this.Mapper.Map<Application>(app);
                 newApplication.Creator = this.users.GetByName(this.User.Identity.Name);
                 newApplication.CaterogyId = app.CategoryId;
@@ -83,14 +88,23 @@
 
                     if (!FileSystemChecker.FileExists(WebConstants.ImageFolder, app.UploadedImage.FileName))
                     {
-                        app.UploadedImage.SaveAs(Path.Combine(WebConstants.ImageFolder, app.UploadedImage.FileName));
-                        newApplication.Image = new AppImage
+                        app.UploadedImage.SaveAs(Server.MapPath(Path.Combine(WebConstants.ImageFolder, app.UploadedImage.FileName)));
+                        var image = new AppImage
                         {
                             Name = app.UploadedImage.FileName,
                             Path = Path.Combine(WebConstants.ImageFolder, app.UploadedImage.FileName)
                         };
 
-                        this.images.Add(newApplication.Image);
+                        newApplication.Image = image;
+
+                        //dbImage = this.images.Add(image);
+                        //newApplication.AppImageId = dbImage.Id;
+                    }
+                    else
+                    {
+                        var storedImage = this.images.GetByName(app.UploadedImage.FileName);
+                        newApplication.Image = storedImage;
+                        //TODO: maybe add other image properties
                     }
                 }
                 else
@@ -109,11 +123,15 @@
 
                     if (!FileSystemChecker.FileExists(WebConstants.ApplicationFolder, app.UploadedApplication.FileName))
                     {
-                        app.UploadedApplication.SaveAs(Path.Combine(WebConstants.ApplicationFolder, app.UploadedApplication.FileName));
+                        app.UploadedApplication.SaveAs(Server.MapPath(Path.Combine(WebConstants.ApplicationFolder, app.UploadedApplication.FileName)));
+                        newApplication.Path = Path.Combine(WebConstants.ApplicationFolder, app.UploadedApplication.FileName);
+                    }
+                    else
+                    {
                         newApplication.Path = Path.Combine(WebConstants.ApplicationFolder, app.UploadedApplication.FileName);
                     }
 
-                    this.applications.Add(newApplication);
+                    var savedApp = this.applications.Add(newApplication);
                     RedirectToAction("Uploaded", "Applications");
                 }
                 else
