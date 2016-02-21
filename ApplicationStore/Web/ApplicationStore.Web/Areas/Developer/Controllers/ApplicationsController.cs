@@ -158,7 +158,7 @@
                     }
 
                     newApplication.CreatorId = User.Identity.GetUserId();
-                    newApplication.CaterogyId = app.Application.CategoryId;
+                    newApplication.CategoryId = app.Application.CategoryId;
                     var savedApp = this.applications.Add(newApplication);
                     var curentDeveloper = this.users.GetById(newApplication.CreatorId);
                     curentDeveloper.Applications.Add(savedApp);

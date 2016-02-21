@@ -50,7 +50,7 @@ namespace ApplicationStore.Services
         //public void UpdateById(string id, Application updatedApp)
         //{
         //    var appToUpdate = this.applications.GetById(id);
-        //    appToUpdate.CaterogyId = updatedApp.CaterogyId;
+        //    appToUpdate.CategoryId = updatedApp.CategoryId;
         //    appToUpdate.Description = updatedApp.Description;
         //    appToUpdate.
         //}

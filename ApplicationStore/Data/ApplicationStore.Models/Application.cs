@@ -31,7 +31,7 @@
         public User Creator { get; set; }
 
         [Required]
-        public int CaterogyId { get; set; }
+        public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
