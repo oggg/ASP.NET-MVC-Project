@@ -162,7 +162,6 @@
                     var savedApp = this.applications.Add(newApplication);
                     var curentDeveloper = this.users.GetById(newApplication.CreatorId);
                     curentDeveloper.Applications.Add(savedApp);
-                    // return RedirectToAction("Index", "Home", new { area = "" });
                     return RedirectToAction("Uploaded");
                 }
                 else
