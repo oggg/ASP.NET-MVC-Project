@@ -262,6 +262,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FileStorage\Applications\Arthas.jpg" />
+    <Content Include="FileStorage\Applications\Boston City Flow.jpg" />
+    <Content Include="FileStorage\Images\Arthas_2.jpg" />
+    <Content Include="FileStorage\Images\Costa Rican Frog.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

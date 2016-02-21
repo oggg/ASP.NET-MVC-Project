@@ -5,8 +5,12 @@
 
     public class DeveloperApplicationsViewModel
     {
-        public IList<ApplicationViewModel> Applications { get; set; }
+        public int CurrentPage { get; set; }
 
-        public IList<CategoryViewModel> Categories { get; set; }
+        public int TotalPages { get; set; }
+
+        public IEnumerable<ApplicationViewModel> Applications { get; set; }
+
+        // public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

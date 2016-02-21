@@ -1,5 +1,6 @@
 ﻿namespace ApplicationStore.Web.Areas.Developer.Controllers
 {
+    using System;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -35,11 +36,22 @@
         }
 
         [HttpGet]
-        public ActionResult Uploaded()
+        public ActionResult Uploaded(int id = 1)
         {
+            int page = id;
             string devName = this.User.Identity.Name;
-            var apps = this.applications.GetByCreator(devName);
-            var applications = apps.To<ApplicationViewModel>().ToList();
+            int allApps = this.applications.GetByCreator(devName).Count();
+            var totalPages = (int)Math.Ceiling(allApps / (decimal)WebConstants.AppsPerPage);
+
+            var cat = this.categories.GetAll().To<CategoryViewModel>().ToList();
+
+            var apps = this.applications.GetAll()
+                .Where(x => x.Creator.UserName == devName)
+                .OrderBy(x => x.Id)
+                .Skip((page - 1) * WebConstants.AppsPerPage)
+                .Take(WebConstants.AppsPerPage)
+                .To<ApplicationViewModel>()
+                .ToList();
 
             // TODO: check this.Cache service work
 
@@ -48,20 +60,23 @@
             //        "categories",
             //        () => this.categories.GetAll(),
             //        5 * 60);
-            var cat = this.categories.GetAll().To<CategoryViewModel>(); //.ToList();
-            var categories = cat.ToList();
-            var devAppsModel = new DeveloperApplicationsViewModel { Applications = applications, Categories = categories };
+
+            var devAppsModel = new DeveloperApplicationsViewModel
+            {
+                Applications = apps,
+                CurrentPage = page,
+                TotalPages = totalPages
+            };
             return View(devAppsModel);
         }
 
         [HttpGet]
         public ActionResult AddApplication()
         {
-            var cat = this.categories.GetAll(); //.To<CategoryViewModel>(); //.ToList();
-            var categories = cat.To<CategoryViewModel>().ToList();
+            var cat = this.categories.GetAll().To<CategoryViewModel>().ToList();
             var addApplicationViewModel = new AddApplicationViewModel
             {
-                Categories = categories
+                Categories = cat
             };
             var imageModel = new AppImageModel();
             var addViewModel = new AddViewModel
@@ -69,7 +84,10 @@
                 Application = addApplicationViewModel,
                 Image = imageModel
             };
-            // addApplicationViewModel.Categories = new SelectList(categories, "Id", "Name");
+
+            //TODO: choose wiser method for passing addViewModel
+            this.HttpContext.Cache["addViewModel"] = addViewModel;
+
             return View(addViewModel);
         }
 
@@ -92,17 +110,21 @@
 
                     if (!FileSystemChecker.FileExists(WebConstants.ImageFolder, app.Image.UploadedImage.FileName))
                     {
-                        app.Image.UploadedImage.SaveAs(Server.MapPath(Path.Combine(WebConstants.ImageFolder, app.Image.UploadedImage.FileName)));
+                        app.Image.UploadedImage.SaveAs(Server.MapPath(string.Format("{0}/{1}", WebConstants.ImageFolder, app.Image.UploadedImage.FileName)));
                         var image = new AppImage
                         {
                             Name = app.Image.UploadedImage.FileName,
-                            Path = Path.Combine(WebConstants.ImageFolder, app.Image.UploadedImage.FileName)
+                            Path = string.Format("{0}/{1}", WebConstants.ImageFolder, app.Image.UploadedImage.FileName)
                         };
 
-                        newApplication.Image = image;
-
-                        AppImage dbImage = this.images.Add(image);
+                        this.images.Add(image);
+                        var dbImage = this.images.GetByName(image.Name);
+                        if (dbImage.Path.IndexOf("\\") > -1)
+                        {
+                            dbImage.Path.Replace("\\", "/");
+                        }
                         // newApplication.AppImageId = dbImage.Id; just changed and uncomment newApplication.Image = image;
+                        newApplication.Image = dbImage;
                     }
                     else
                     {
@@ -114,7 +136,7 @@
                 else
                 {
                     // return view in case of missing application image file
-                    return View(app);
+                    return View(this.HttpContext.Cache["addViewModel"]);
                 }
 
                 //check if application file exists
@@ -127,30 +149,31 @@
 
                     if (!FileSystemChecker.FileExists(WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName))
                     {
-                        app.Application.UploadedApplication.SaveAs(Server.MapPath(Path.Combine(WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName)));
-                        newApplication.Path = Path.Combine(WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
+                        app.Application.UploadedApplication.SaveAs(Server.MapPath(string.Format("{0}/{1}", WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName)));
+                        newApplication.Path = string.Format("{0}/{1}", WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
                     }
                     else
                     {
-                        newApplication.Path = Path.Combine(WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
+                        newApplication.Path = string.Format("{0}/{1}", WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
                     }
 
-                    // swap the comment of the two lines below if needed
                     newApplication.CreatorId = User.Identity.GetUserId();
-                    // newApplication.Creator = this.users.GetById(newApplication.CreatorId);
+                    newApplication.CaterogyId = app.Application.CategoryId;
                     var savedApp = this.applications.Add(newApplication);
                     var curentDeveloper = this.users.GetById(newApplication.CreatorId);
                     curentDeveloper.Applications.Add(savedApp);
-                    return RedirectToAction("Uploaded", "Applications");
+                    // return RedirectToAction("Index", "Home", new { area = "" });
+                    return RedirectToAction("Uploaded");
                 }
                 else
                 {
                     // return view in case of missing application file
-                    return View(app);
+                    return View(this.HttpContext.Cache["addViewModel"]);
                 }
             }
 
-            return View(app);
+            // return View(app);
+            return View(this.HttpContext.Cache["addViewModel"]);
         }
     }
 }

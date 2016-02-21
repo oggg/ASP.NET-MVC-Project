@@ -11,6 +11,8 @@ namespace ApplicationStore.Services
 
         IQueryable<Application> GetByCreator(string creatorName);
 
+        IQueryable<Application> GetByCreatorId(string Id);
+
         Application GetById(string id);
 
         // void UpdateById(int id, Application application);

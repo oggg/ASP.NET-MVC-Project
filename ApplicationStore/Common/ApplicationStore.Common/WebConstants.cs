@@ -2,7 +2,9 @@
 {
     public class WebConstants
     {
-        public const string ImageFolder = "~/App_Data/Images";
-        public const string ApplicationFolder = "~/App_Data/Applications";
+        public const string ImageFolder = "~/FileStorage/Images";
+        public const string ApplicationFolder = "~/FileStorage/Applications";
+
+        public const int AppsPerPage = 3;
     }
 }

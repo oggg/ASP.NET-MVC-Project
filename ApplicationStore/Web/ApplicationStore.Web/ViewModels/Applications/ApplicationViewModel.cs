@@ -1,15 +1,12 @@
 ﻿namespace ApplicationStore.Web.ViewModels.Applications
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using ApplicationStore.Models;
     using ApplicationStore.Web.Infrastructure.Mapping;
     using AutoMapper;
-
     public class ApplicationViewModel : IMapFrom<Application>, IHaveCustomMappings
     {
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 
@@ -17,30 +14,21 @@
 
         public string Creator { get; set; }
 
-        public int AppImage { get; set; }
+        public string AppImage { get; set; } // was int before pointing to Image id
 
-        public ICollection<int> Rating { get; set; }
+        //public int? Rating { get; set; }
 
-        public double Rated()
-        {
-            var divider = this.Rating.Count;
+        //public int? Rated { get; set; }
 
-            if (divider == 0)
-            {
-                divider = 1;
-            }
-
-            var rate = this.Rating.Sum() / (double)divider;
-            return rate;
-        }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Application, ApplicationViewModel>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.Creator, opt => opt.MapFrom(src => src.Creator.UserName))
-                .ForMember(dest => dest.AppImage, opt => opt.MapFrom(src => src.AppImageId))
-                .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.Ratings.Select(r => r.Value)));
+                .ForMember(dest => dest.AppImage, opt => opt.MapFrom(src => src.Image.Path));
+            //.ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.Ratings == null ? 0 : src.Ratings.Sum(r => r.Value)))// .Sum(r => r.Value)))
+            //.ForMember(dest => dest.Rated, opt => opt.MapFrom(src => src.Ratings.Count == 0 ? 1 : src.Ratings.Count));
         }
     }
 }

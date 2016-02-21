@@ -31,6 +31,12 @@ namespace ApplicationStore.Services
             return result;
         }
 
+        public IQueryable<Application> GetByCreatorId(string Id)
+        {
+            var result = this.applications.All().Where(x => x.CreatorId == Id);
+            return result;
+        }
+
         public Application GetById(string id)
         {
             return this.applications.GetById(id);

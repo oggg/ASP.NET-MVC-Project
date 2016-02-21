@@ -16,6 +16,11 @@
     white-space: normal;
 }
 
+.bordered {
+    border: 1px solid grey;
+    margin: 5px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
