@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ApplicationStore.Data.Repositories;
 using ApplicationStore.Models;
 
@@ -39,7 +40,7 @@ namespace ApplicationStore.Services
 
         public Application GetById(string id)
         {
-            return this.applications.GetById(id);
+            return this.applications.GetById(new Guid(id));
         }
 
         public void Remove(string id)

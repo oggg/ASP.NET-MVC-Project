@@ -22,18 +22,16 @@
                         <div>
                             <strong>Category: </strong> @item.Category
                         </div>
-
-                        <a href="/Applications/Details/@item.Id" class="btn btn-primary">More Details...</a>
                         @Ajax.ActionLink("More Details...", "Details", "Application", new { id = item.Id },
                             new AjaxOptions
                             {
                                 InsertionMode = InsertionMode.Replace,
                                 UpdateTargetId = item.Id
-                            })
+                            }, new { @class = "btn btn-primary" })
 
-                        @if (!(User.IsInRole(DbConstants.AdminRole) || User.IsInRole(DbConstants.DeveloperRole)))
+                        @if (!(User.IsInRole(DbConstants.AdminRole) || User.IsInRole(DbConstants.DeveloperRole) || !User.Identity.IsAuthenticated))
                         {
-                            <a href="/" class="btn btn-info">Download</a>
+                            @Html.ActionLink("Download", "GetApplication" , "Download", new { id = item.Id}, new { @class = "btn btn-info" })
                         }
 
                         <div id="@item.Id"></div>
@@ -43,3 +41,7 @@
         }
     </div>
 </div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+}

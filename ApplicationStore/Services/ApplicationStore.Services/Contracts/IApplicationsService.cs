@@ -15,8 +15,6 @@ namespace ApplicationStore.Services
 
         Application GetById(string id);
 
-        // void UpdateById(int id, Application application);
-
         void Remove(string id);
     }
 }
