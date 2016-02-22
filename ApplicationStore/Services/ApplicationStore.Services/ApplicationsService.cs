@@ -46,13 +46,5 @@ namespace ApplicationStore.Services
         {
             this.applications.Delete(id);
         }
-
-        //public void UpdateById(string id, Application updatedApp)
-        //{
-        //    var appToUpdate = this.applications.GetById(id);
-        //    appToUpdate.CategoryId = updatedApp.CategoryId;
-        //    appToUpdate.Description = updatedApp.Description;
-        //    appToUpdate.
-        //}
     }
 }

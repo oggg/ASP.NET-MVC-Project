@@ -32,7 +32,6 @@
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<AddApplicationViewModel, Application>()
-                // .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.UploadedImage))
                 .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.UploadedApplication.FileName));
         }
     }
