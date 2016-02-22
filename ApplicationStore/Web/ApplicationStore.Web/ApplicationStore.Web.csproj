@@ -217,6 +217,7 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Developer\Controllers\UploadApplicationController.cs" />
     <Compile Include="Areas\Developer\Controllers\ApplicationsController.cs" />
     <Compile Include="Areas\Developer\DeveloperAreaRegistration.cs" />
     <Compile Include="Areas\Developer\ViewModels\AddViewModel.cs" />
