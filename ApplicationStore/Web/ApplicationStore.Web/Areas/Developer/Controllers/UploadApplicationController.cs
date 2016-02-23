@@ -85,14 +85,13 @@ namespace ApplicationStore.Web.Areas.Developer.Controllers
                         {
                             dbImage.Path.Replace("\\", "/");
                         }
-                        newApplication.AppImageId = dbImage.Id; //just changed and uncomment newApplication.Image = image;
-                        // newApplication.Image = dbImage;
+
+                        newApplication.AppImageId = dbImage.Id;
                     }
                     else
                     {
                         var storedImage = this.images.GetByName(app.Image.UploadedImage.FileName);
-                        newApplication.AppImageId = storedImage.Id; // just commented and added line below
-                        // newApplication.App = storedImage;
+                        newApplication.AppImageId = storedImage.Id;
                     }
                 }
                 else

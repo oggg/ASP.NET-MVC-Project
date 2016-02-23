@@ -1,0 +1,56 @@
+﻿@model ApplicationStore.Web.Areas.Developer.ViewModels.AddViewModel
+
+@{
+    ViewBag.Title = "Add application";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddApplication", "UploadApplication", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Add new application</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Application.CategoryId, new { @class = "col-md-3 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Application.CategoryId, Model.Application.GetCategories)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Application.Name, new { @class = "col-md-3 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Application.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Application.Description, new { @class = "col-md-3 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Application.Description, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3 control-label">
+            <strong>Application</strong>
+        </div>
+        <div class="col-md-10">
+            <input type="file" name="Application.UploadedApplication" class="file" />
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Image.UploadedImage, new { @class = "col-md-3 control-label" })
+            <div class="col-md-10 fileinput fileinput-new">
+                <input type="file" name="Image.UploadedImage" class="file">
+            </div>
+        </div>
+            <br />
+            <div class="row">
+                <div class="col-md-5">
+                    <input type="submit" class="btn btn-primary" value="Upload"/>
+                </div>
+            </div>
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

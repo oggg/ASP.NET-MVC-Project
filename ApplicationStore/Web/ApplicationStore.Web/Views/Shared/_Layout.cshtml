@@ -22,6 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    @if (!(User.IsInRole(DbConstants.AdminRole) || User.IsInRole(DbConstants.DeveloperRole)) && User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("My applications", "Index", "UserApplications", new { area = string.Empty }, null)</li>
+                    }
                     @if (User.IsInRole(DbConstants.AdminRole))
                     {
                         <li>@Html.ActionLink("Administration", "Index", "Users", new { area = "Administration"}, null)</li>

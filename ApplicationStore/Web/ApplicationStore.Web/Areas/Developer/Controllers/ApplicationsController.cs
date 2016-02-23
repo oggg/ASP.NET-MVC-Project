@@ -1,14 +1,10 @@
 ﻿namespace ApplicationStore.Web.Areas.Developer.Controllers
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
     using ApplicationStore.Common;
-    using Infrastructure.Helpers;
     using Infrastructure.Mapping;
-    using Microsoft.AspNet.Identity;
-    using Models;
     using Services;
     using Services.Contracts;
     using ViewModels;
@@ -68,111 +64,6 @@
                 TotalPages = totalPages
             };
             return View(devAppsModel);
-        }
-
-        [HttpGet]
-        public ActionResult AddApplication()
-        {
-            var cat = this.categories.GetAll().To<CategoryViewModel>().ToList();
-            var addApplicationViewModel = new AddApplicationViewModel
-            {
-                Categories = cat
-            };
-            var imageModel = new AppImageModel();
-            var addViewModel = new AddViewModel
-            {
-                Application = addApplicationViewModel,
-                Image = imageModel
-            };
-
-            //TODO: choose wiser method for passing addViewModel
-            this.HttpContext.Cache["addViewModel"] = addViewModel;
-
-            return View(addViewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddApplication(AddViewModel app)
-        {
-            //TODO: ADD CATEGORIES TO APP, BEFORE RETURNING IT TO A VIEW!!! THROWS ARGUMENT NULL EXCEPTION FOR THE COLLECTION OF CATEGORIES 
-            if (app != null && ModelState.IsValid)
-            {
-                var newApplication = this.Mapper.Map<Application>(app.Application);
-
-                //check if image file exists
-                if (app.Image.UploadedImage != null)
-                {
-                    if (!FileSystemChecker.DirectoryExists(WebConstants.ImageFolder))
-                    {
-                        Directory.CreateDirectory(Server.MapPath(WebConstants.ImageFolder));
-                    }
-
-                    if (!FileSystemChecker.FileExists(WebConstants.ImageFolder, app.Image.UploadedImage.FileName))
-                    {
-                        app.Image.UploadedImage.SaveAs(Server.MapPath(string.Format("{0}/{1}", WebConstants.ImageFolder, app.Image.UploadedImage.FileName)));
-                        var image = new AppImage
-                        {
-                            Name = app.Image.UploadedImage.FileName,
-                            Path = string.Format("{0}/{1}", WebConstants.ImageFolder, app.Image.UploadedImage.FileName)
-                        };
-
-                        this.images.Add(image);
-                        var dbImage = this.images.GetByName(image.Name);
-                        if (dbImage.Path.IndexOf("\\") > -1)
-                        {
-                            dbImage.Path.Replace("\\", "/");
-                        }
-                        // newApplication.AppImageId = dbImage.Id; just changed and uncomment newApplication.Image = image;
-                        newApplication.Image = dbImage;
-                    }
-                    else
-                    {
-                        var storedImage = this.images.GetByName(app.Image.UploadedImage.FileName);
-                        // newApplication.AppImageId = storedImage.Id; just commented and added line below
-                        newApplication.Image = storedImage;
-                    }
-                }
-                else
-                {
-                    // return view in case of missing application image file
-                    return View(this.HttpContext.Cache["addViewModel"]);
-                }
-
-                //check if application file exists
-                if (app.Application.UploadedApplication != null)
-                {
-                    if (!FileSystemChecker.DirectoryExists(WebConstants.ApplicationFolder))
-                    {
-                        Directory.CreateDirectory(Server.MapPath(WebConstants.ApplicationFolder));
-                    }
-
-                    if (!FileSystemChecker.FileExists(WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName))
-                    {
-                        app.Application.UploadedApplication.SaveAs(Server.MapPath(string.Format("{0}/{1}", WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName)));
-                        newApplication.Path = string.Format("{0}/{1}", WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
-                    }
-                    else
-                    {
-                        newApplication.Path = string.Format("{0}/{1}", WebConstants.ApplicationFolder, app.Application.UploadedApplication.FileName);
-                    }
-
-                    newApplication.CreatorId = User.Identity.GetUserId();
-                    newApplication.CategoryId = app.Application.CategoryId;
-                    var savedApp = this.applications.Add(newApplication);
-                    var curentDeveloper = this.users.GetById(newApplication.CreatorId);
-                    curentDeveloper.Applications.Add(savedApp);
-                    return RedirectToAction("Uploaded");
-                }
-                else
-                {
-                    // return view in case of missing application file
-                    return View(this.HttpContext.Cache["addViewModel"]);
-                }
-            }
-
-            // return View(app);
-            return View(this.HttpContext.Cache["addViewModel"]);
         }
     }
 }

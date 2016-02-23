@@ -33,8 +33,8 @@
 
             var apps = this.applications.GetAll()
                 .OrderBy(x => x.Id)
-                .Skip((page - 1) * WebConstants.AppsPerPage)
-                .Take(WebConstants.AppsPerPage)
+                //.Skip((page - 1) * WebConstants.AppsPerPage)
+                //.Take(WebConstants.AppsPerPage)
                 .To<ApplicationViewModel>()
                 .ToList();
 

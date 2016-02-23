@@ -15,6 +15,13 @@ namespace ApplicationStore.Services
             this.users = users;
         }
 
+        public User Add(User user)
+        {
+            this.users.Add(user);
+            this.users.SaveChanges();
+            return user;
+        }
+
         public IQueryable<User> GetAll()
         {
             return this.users.All();

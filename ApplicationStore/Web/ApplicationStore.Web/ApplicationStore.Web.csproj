@@ -231,6 +231,7 @@
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserApplicationsController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,8 +283,8 @@
     <Content Include="Areas\Administration\Views\Users\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
-    <Content Include="Areas\Developer\Views\Applications\AddApplication.cshtml" />
-    <Content Include="Areas\Developer\Views\UploadApplication\Uploaded.cshtml" />
+    <Content Include="Areas\Developer\Views\UploadApplication\AddApplication.cshtml" />
+    <Content Include="Areas\Developer\Views\Applications\Uploaded.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -330,13 +331,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserApplications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\ViewModels\" />
     <Folder Include="Areas\Developer\Views\Shared\" />
     <Folder Include="ViewModels\Home\" />
-    <Folder Include="Views\Application\" />
+    <Folder Include="Views\Applications\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Download\" />
   </ItemGroup>

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ApplicationStore.Data;
-using ApplicationStore.Models;
-
-namespace ApplicationStore.Web.Areas.Administration.Controllers
+﻿namespace ApplicationStore.Web.Areas.Administration.Controllers
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using ApplicationStore.Data;
+    using ApplicationStore.Models;
+
     public class UsersController : Controller
     {
         private ApplicationStoreDbContext db = new ApplicationStoreDbContext();

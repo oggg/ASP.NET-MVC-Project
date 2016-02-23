@@ -10,7 +10,7 @@ using Microsoft.Owin.Security;
 namespace ApplicationStore.Web.Controllers
 {
     [Authorize]
-    public class ManageController : BaseController
+    public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

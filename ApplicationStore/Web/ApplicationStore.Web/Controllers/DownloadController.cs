@@ -25,6 +25,7 @@ namespace ApplicationStore.Web.Controllers
 
             currentUser.Applications.Add(application);
 
+
             return File(application.Path, MediaTypeNames.Application.Octet, string.Format("{0}.exe", application.Name));
         }
     }

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ApplicationStore.Web.ViewModels.Applications.ApplicationViewModel>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 bordered">
+            <h2>@item.Name</h2>
+            <div>
+                <img class="img-responsive img-rounded" src="@Url.Content(item.AppImage)" alt="@item.Name" />
+            </div>
+            <div>
+                <strong>Category: </strong> @item.Category
+            </div>
+            @if (!(User.IsInRole(DbConstants.AdminRole) || User.IsInRole(DbConstants.DeveloperRole) || !User.Identity.IsAuthenticated))
+            {
+                @Html.ActionLink("Download", "GetApplication", "Download", new { id = item.Id }, new { @class = "btn btn-info" })
+            }
+
+            <div id="@item.Id"></div>
+        </div>
+    }
+</div>
