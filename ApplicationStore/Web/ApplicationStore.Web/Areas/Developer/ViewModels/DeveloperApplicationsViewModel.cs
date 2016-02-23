@@ -11,6 +11,5 @@
 
         public IEnumerable<ApplicationViewModel> Applications { get; set; }
 
-        // public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

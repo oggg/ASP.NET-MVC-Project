@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ApplicationStore.Web.Controllers
 {
+    [Authorize]
     public class DownloadController : BaseController
     {
         private readonly IApplicationsService applications;

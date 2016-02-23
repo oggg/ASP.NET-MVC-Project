@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ApplicationStore.Web.Areas.Developer.Controllers
 {
+    [Authorize(Roles = DbConstants.DeveloperRole)]
     public class UploadApplicationController : BaseController
     {
         private readonly IApplicationsService applications;

@@ -8,6 +8,7 @@
     using Microsoft.AspNet.Identity;
     using ViewModels.Applications;
 
+    [Authorize]
     public class UserApplicationsController : Controller
     {
         private readonly IApplicationsService applications;

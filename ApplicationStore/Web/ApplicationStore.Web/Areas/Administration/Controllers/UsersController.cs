@@ -6,7 +6,9 @@
     using System.Web.Mvc;
     using ApplicationStore.Data;
     using ApplicationStore.Models;
+    using Common;
 
+    [Authorize(Roles = DbConstants.AdminRole)]
     public class UsersController : Controller
     {
         private ApplicationStoreDbContext db = new ApplicationStoreDbContext();
